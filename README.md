@@ -15,7 +15,9 @@
 
   - [React](https://www.reactjscn.com/)
   
-  - [TypeScript](https://www.tslang.cn/)
+  - [TypeScript](https://www.tslang.cn/) 
+    
+    [阮一峰教程](https://ts.xcatliu.com/)
   
   - [ES6](http://es6.ruanyifeng.com/)
   
