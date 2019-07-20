@@ -1,7 +1,8 @@
 {
-  "miniprogramRoot": "./dist",
+  "miniprogramRoot": "client/dist/",
+  "cloudfunctionRoot": "cloud/functions/",
   "projectname": "easy-dance-client",
-  "description": "easy dance 约舞小程序！",
+  "description": "约舞小程序",
   "appid": "touristappid",
   "setting": {
     "urlCheck": true,

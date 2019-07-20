@@ -1,6 +1,6 @@
 const config = {
   projectName: 'easy-dance-client',
-  date: '2019-7-16',
+  date: '2019-7-19',
   designWidth: 750,
   deviceRatio: {
     '640': 2.34 / 2,
