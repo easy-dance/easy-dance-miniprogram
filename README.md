@@ -8,6 +8,8 @@
   
   - [vscode](https://code.visualstudio.com/)
   可以去自行搜索一些插件集成
+  
+  - Node版本号：v12.6.0 推荐使用nvm进行版本管理，[相关教程](https://zhuanlan.zhihu.com/p/36936107)
 
 - ### 需要了解的
   
