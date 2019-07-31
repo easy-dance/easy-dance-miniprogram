@@ -42,3 +42,15 @@ npm run build:weapp
 ```
 
 输入以上指令会生成一个dist目录，可以在微信开发者工具中打开预览
+
+## 代码风格
+
+为了代码(QIANG)风格(PO)统一(ZHENG),配置了代码检查工具tslint
+
+```bash
+npm i tslint -g
+cd easydance-client/
+tslint -c tslint.json './src/*'
+```
+
+在vscode中也可以搜索tslint插件，vscode对ts有很好的支持，代码漂红或漂黄的时候可以进行快速修复
