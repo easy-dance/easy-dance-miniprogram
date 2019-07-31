@@ -1,15 +1,6 @@
-import Taro, { Component, Config } from '@tarojs/taro'
-import './index.scss'
-
-import Waterfall from '../../components/waterfall/index'
-
-
-type cardList = {
-  imgsrc?: string,
-  title?: string,
-  size?: 'small' | 'middle' | 'large'
-}
-
+import { View } from '@tarojs/components';
+import Taro, { Component, Config } from '@tarojs/taro';
+import './index.scss';
 
 export default class Index extends Component {
 
@@ -21,8 +12,8 @@ export default class Index extends Component {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页'
-  }
+    navigationBarTitleText: '首页',
+  };
 
   componentWillMount() { }
 
@@ -34,22 +25,10 @@ export default class Index extends Component {
 
   componentDidHide() { }
 
-  getCardList(): Array<cardList> {
-    var cardList: any[] = []
-    var size: string = '';
-    for (var i = 0; i < 12; i++) {
-      if (i === 2 || i === 4 || i === 7 || i === 10) { size = 'small' }
-      else if (i === 1 || i === 6 || i === 8 || i===9) { size = 'large' }
-      else { size = 'middle' }
-      cardList.push({ imgsrc: '../../img/luffy.jpeg', title: 'Luffy', size: size })
-    }
-    return cardList
-  }
-
   render() {
-
     return (
-      <Waterfall cardList={this.getCardList()} />
-    )
+      <View>
+      </View>
+    );
   }
 }
