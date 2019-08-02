@@ -1,8 +1,25 @@
-import { View } from '@tarojs/components';
+import { Text, View } from '@tarojs/components';
 import Taro, { Component, Config } from '@tarojs/taro';
-import './index.scss';
+import { Login } from '../../components/login/index';
+import './index.css';
 
-export default class Index extends Component {
+interface Props {}
+
+interface State {
+  loginState: string,
+  userName: string,
+  password: string,
+  serverInfo: string,
+}
+
+const DEFAULT_STATE: State = {
+  loginState: '未登录',
+  userName: 'SilenceRichard',
+  password: '123456',
+  serverInfo: '',
+};
+
+export default class Index extends Component<Props, State> {
 
   /**
    * 指定config的类型声明为: Taro.Config
@@ -15,6 +32,11 @@ export default class Index extends Component {
     navigationBarTitleText: '首页',
   };
 
+  constructor() {
+    super();
+    this.state = DEFAULT_STATE;
+  }
+
   componentWillMount() { }
 
   componentDidMount() { }
@@ -25,9 +47,33 @@ export default class Index extends Component {
 
   componentDidHide() { }
 
+  loginMethod(): void {
+    const that = this;
+    Taro.request({
+      url: 'http://localhost:8000/users/login/',
+      data: {
+        username: this.state.userName,
+        password: this.state.password,
+      },
+      success(res) {
+        that.setState({
+          serverInfo: res.data,
+        });
+      },
+    });
+  }
+
   render() {
     return (
       <View>
+         <Text>{ this.state.loginState }</Text>
+         <Login
+          userName={this.state.userName}
+          password={this.state.password}
+          onlogin={() => this.loginMethod()}
+         />
+         <Text>这是服务端接收的消息:</Text>
+         <Text className='serverText'>{ this.state.serverInfo }</Text>
       </View>
     );
   }
