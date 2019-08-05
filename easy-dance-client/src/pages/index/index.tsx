@@ -1,23 +1,15 @@
-import { Text, View } from '@tarojs/components';
+import { View } from '@tarojs/components';
 import Taro, { Component, Config } from '@tarojs/taro';
-import { Login } from '../../components/login/index';
+import { LoginBox } from '../../components/loginbox/index';
+import { get as getGlobaldata, UserInfo } from '../../globalData';
 import './index.css';
 
 interface Props {}
 
 interface State {
-  loginState: string,
-  userName: string,
-  password: string,
-  serverInfo: string,
+  nickName: string,
+  avatarUrl: string,
 }
-
-const DEFAULT_STATE: State = {
-  loginState: '未登录',
-  userName: 'SilenceRichard',
-  password: '123456',
-  serverInfo: '',
-};
 
 export default class Index extends Component<Props, State> {
 
@@ -32,9 +24,12 @@ export default class Index extends Component<Props, State> {
     navigationBarTitleText: '首页',
   };
 
-  constructor() {
-    super();
-    this.state = DEFAULT_STATE;
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      nickName: getGlobaldata('userInfo').nickName,
+      avatarUrl: getGlobaldata('userInfo').avatarUrl,
+    };
   }
 
   componentWillMount() { }
@@ -47,33 +42,17 @@ export default class Index extends Component<Props, State> {
 
   componentDidHide() { }
 
-  loginMethod(): void {
-    const that = this;
-    Taro.request({
-      url: 'http://localhost:8000/users/login/',
-      data: {
-        username: this.state.userName,
-        password: this.state.password,
-      },
-      success(res) {
-        that.setState({
-          serverInfo: res.data,
-        });
-      },
-    });
+  getUserInfo(): any {
+    Taro.getUserInfo().then(res => console.log(res))
   }
 
   render() {
     return (
       <View>
-         <Text>{ this.state.loginState }</Text>
-         <Login
-          userName={this.state.userName}
-          password={this.state.password}
-          onlogin={() => this.loginMethod()}
-         />
-         <Text>这是服务端接收的消息:</Text>
-         <Text className='serverText'>{ this.state.serverInfo }</Text>
+        <LoginBox
+          nickName={this.state.nickName}
+          avatarUrl={this.state.avatarUrl}
+          onGetUserInfo ={this.getUserInfo}/>
       </View>
     );
   }
