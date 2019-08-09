@@ -1,4 +1,5 @@
 /easy-dance-client/node_modules/
+/cloud/functions/*/node_modules/
 /easy-dance-client/dist/
 .vscode/
 .DS_Store
