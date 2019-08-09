@@ -19,9 +19,9 @@ interface GlobalData {
   formFlag: boolean, // 用户完善资料状态
 }
 
-const globalData: GlobalData = {
+export const globalData: GlobalData = {
   default_config: {
-    server_url: 'http://localhost:8000/', // 暂用开发地址
+    server_url: 'http://localhost:8000', // 暂用开发地址
   },
   userInfo: {
     nickName: '暂无昵称',

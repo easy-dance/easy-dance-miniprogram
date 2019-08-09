@@ -1,14 +1,11 @@
 import { View } from '@tarojs/components';
 import Taro, { Component, Config } from '@tarojs/taro';
 import { LoginBox } from '../../components/loginbox/index';
-import { get as getGlobaldata, UserInfo } from '../../globalData';
 import './index.css';
 
 interface Props {}
 
 interface State {
-  nickName: string,
-  avatarUrl: string,
 }
 
 export default class Index extends Component<Props, State> {
@@ -27,8 +24,6 @@ export default class Index extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      nickName: getGlobaldata('userInfo').nickName,
-      avatarUrl: getGlobaldata('userInfo').avatarUrl,
     };
   }
 
@@ -42,17 +37,10 @@ export default class Index extends Component<Props, State> {
 
   componentDidHide() { }
 
-  getUserInfo(): any {
-    Taro.getUserInfo().then(res => console.log(res))
-  }
-
   render() {
     return (
       <View>
-        <LoginBox
-          nickName={this.state.nickName}
-          avatarUrl={this.state.avatarUrl}
-          onGetUserInfo ={this.getUserInfo}/>
+        <LoginBox/>
       </View>
     );
   }
