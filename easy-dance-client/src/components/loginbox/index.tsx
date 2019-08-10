@@ -1,7 +1,7 @@
 import { Text, View } from '@tarojs/components';
 import Taro, { Component } from '@tarojs/taro';
 import { ClAvatar, ClButton } from 'mp-colorui';
-import {globalData} from '../../globalData';
+import {globalData, set as setGlobalData} from '../../globalData';
 import './index.scss';
 
 interface Props {}
@@ -19,6 +19,19 @@ export class LoginBox extends Component<Props, State> {
       avatarurl: '',
     };
   }
+  async componentWillMount() {
+    try {
+      const result: any = await Taro.getStorage({key: 'userInfo'});
+      result && setGlobalData('loginFlag', true);
+      this.setState({
+        nickname: result.data.nickName,
+        avatarurl: result.data.avatarUrl,
+      });
+    } catch (e) {
+      setGlobalData('loginFlag', false);
+    }
+  }
+
   async onGetUserInfo(info) {
     const res: any =  await Taro.cloud.callFunction({name: 'login'});
     const userInfo = {...info.detail.userInfo,
@@ -27,11 +40,45 @@ export class LoginBox extends Component<Props, State> {
       url: `${globalData.default_config.server_url}/users/login`,
       data: userInfo,
     });
+    await Taro.setStorage({
+      key: 'userInfo',
+      data: result.data,
+    });
+    setGlobalData('loginFlag', true);
     this.setState({
       nickname: result.data.nickName,
       avatarurl: result.data.avatarUrl,
     });
   }
+
+  renderUnLogin() {
+    return (
+      <View className='buttonBox'>
+        <ClButton
+          bgColor='white'
+        >
+          暂不登录
+        </ClButton>
+        <ClButton
+          bgColor='green'
+          openType='getUserInfo'
+          onGetUserInfo={this.onGetUserInfo.bind(this)}>
+          微信登录
+        </ClButton>
+      </View>
+    );
+  }
+
+  renderLogin() {
+    return (
+      <View className='buttonBox'>
+        <ClButton>
+          欢迎回来
+        </ClButton>
+      </View>
+    );
+  }
+
   render() {
     return(
       <View>
@@ -41,8 +88,8 @@ export class LoginBox extends Component<Props, State> {
             headerArray={[
               {
                 url: this.state.avatarurl,
-                text: 'E',
-                bgColor: 'yellow',
+                text: globalData.loginFlag ? '' : 'E',
+                bgColor: 'black',
               },
             ]}
             size='xlarge'
@@ -56,13 +103,11 @@ export class LoginBox extends Component<Props, State> {
             {this.state.nickname}
           </Text>
         </View>
-        <View className='buttonBox'>
-          <ClButton
-            bgColor='green'
-            openType='getUserInfo'
-            onGetUserInfo={this.onGetUserInfo.bind(this)}>
-              授权登录
-          </ClButton>
+        <View>
+          {globalData.loginFlag ?
+            this.renderLogin() :
+            this.renderUnLogin()
+          }
         </View>
       </View>
     );
