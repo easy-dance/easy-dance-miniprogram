@@ -1,7 +1,7 @@
 import '@tarojs/async-await';
 import Taro, { Component, Config } from '@tarojs/taro';
 import './app.scss';
-import Index from './pages/login/index';
+import Index from './pages/mine/index';
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -20,6 +20,7 @@ class App extends Component {
    */
   config: Config = {
     pages: [
+      'pages/mine/index',
       'pages/login/index',
     ],
     window: {
@@ -48,7 +49,7 @@ class App extends Component {
   render () {
     return (
       <Index />
-    )
+    );
   }
 }
 

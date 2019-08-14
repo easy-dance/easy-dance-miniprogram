@@ -3,3 +3,4 @@
 /easy-dance-client/dist/
 .vscode/
 .DS_Store
+project.config.json
