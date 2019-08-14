@@ -12,6 +12,15 @@ export interface UserInfo { // 用户信息
   avatarUrl: string,
 }
 
+export interface TemplateTypes { // 模板消息
+  touser: string,
+  page?: string,
+  data?: object,
+  templateId: string,
+  formId: string,
+  emphasisKeyword: string,
+}
+
 interface GlobalData {
   default_config: DefConfig,
   loginFlag: boolean,  // 用户登录状态

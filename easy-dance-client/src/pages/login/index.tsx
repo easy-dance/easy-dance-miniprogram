@@ -1,7 +1,5 @@
-import { View } from '@tarojs/components';
 import Taro, { Component, Config } from '@tarojs/taro';
-import { LoginBox } from '../../components/loginbox/index';
-import './index.css';
+import LoginBox from './LoginBox';
 
 interface Props {}
 
@@ -21,27 +19,9 @@ export default class Index extends Component<Props, State> {
     navigationBarTitleText: '首页',
   };
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  componentWillMount() { }
-
-  componentDidMount() { }
-
-  componentWillUnmount() { }
-
-  componentDidShow() { }
-
-  componentDidHide() { }
-
   render() {
     return (
-      <View>
-        <LoginBox/>
-      </View>
+      <LoginBox/>
     );
   }
 }
