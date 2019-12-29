@@ -32,6 +32,10 @@
 开发环境(热更新，修改代码时在微信开发者工具可以随时查看效果)
 
 ```bash
+cd easy-dance-client/
+```
+
+```bash
 npm run dev:weapp
 ```
 
@@ -41,7 +45,19 @@ npm run dev:weapp
 npm run build:weapp
 ```
 
-输入以上指令会生成一个dist目录，可以在微信开发者工具中打开预览
+```
+# yarn
+$ yarn dev:weapp
+$ yarn build:weapp
+# npm script
+$ npm run dev:weapp
+$ npm run build:weapp
+# 仅限全局安装
+$ taro build --type weapp --watch
+$ taro build --type weapp
+```
+
+输入以上指令会生成一个dist目录，可以在微信开发者工具中打开预览, 去掉 --watch 将不会监听文件修改，并会对代码进行压缩打包
 
 ## 代码风格
 

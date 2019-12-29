@@ -1,21 +1,17 @@
 {
-	"miniprogramRoot": "easy-dance-client/dist/",
-	"cloudfunctionRoot": "cloud/functions/",
-	"projectname": "easy-dance-client",
-	"description": "约舞小程序",
+	"miniprogramRoot": "dist/",
+	"projectname": "easydance",
+	"description": "",
 	"appid": "wx34139989263b3718",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,
 		"postcss": false,
-		"minified": false,
-		"newFeature": true,
-		"autoAudits": false,
-		"checkInvalidKey": true
+		"minified": false
 	},
 	"compileType": "miniprogram",
+	"cloudfunctionRoot": "cloud/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
-	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {}
 }

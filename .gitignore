@@ -1,6 +1,7 @@
-/easy-dance-client/node_modules/
+node_modules/
+/client/package-lock.json
 /cloud/functions/*/node_modules/
-/easy-dance-client/dist/
+/dist/
 .vscode/
 .DS_Store
 project.config.json
