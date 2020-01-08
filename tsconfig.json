@@ -13,7 +13,6 @@
     "noUnusedParameters": true,
     "strictNullChecks": true,
     "sourceMap": true,
-    "baseUrl": ".",
     "rootDir": ".",
     "jsx": "preserve",
     "jsxFactory": "Taro.createElement",
@@ -22,7 +21,14 @@
     "typeRoots": [
       "node_modules/@types",
       "global.d.ts"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/pages/*": ["./src/pages/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/constants/*": ["./src/constants/*"],
+    },
   },
   "exclude": [
     "node_modules",

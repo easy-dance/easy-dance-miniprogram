@@ -1,3 +1,4 @@
+const path = require('path');
 const config = {
   projectName: 'easydance',
   date: '2019-12-29',
@@ -9,6 +10,19 @@ const config = {
   },
   sourceRoot: 'src',
   outputRoot: 'dist',
+  alias: {
+    '@/pages': path.resolve(__dirname, '..', 'src/pages'),
+    '@/components': path.resolve(__dirname, '..', 'src/components'),
+    '@/utils': path.resolve(__dirname, '..', 'src/utils'),
+    '@/constants': path.resolve(__dirname, '..', 'src/constants'),
+    '@/services': path.resolve(__dirname, '..', 'src/services'),
+  },
+  sass: {
+    resource: [
+      'src/constants/tarouiCSS/calendar.scss',
+    ],
+    projectDirectory: path.resolve(__dirname, '..')
+  },
   babel: {
     sourceMap: true,
     presets: [
@@ -27,6 +41,15 @@ const config = {
         "moduleName": 'babel-runtime'
       }],
     ]
+  },
+  copy: {
+    patterns: [
+      {
+        from: 'echarts.min.js',
+        to: `dist/npm/echarts12/dist/${process.env.TARO_ENV}/components/echart/echarts.js`,
+      }
+    ],
+    options: {}
   },
   plugins: [],
   defineConstants: {

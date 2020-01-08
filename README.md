@@ -32,7 +32,7 @@
 开发环境(热更新，修改代码时在微信开发者工具可以随时查看效果)
 
 ```bash
-cd easy-dance-client/
+ cnpm i -g @tarojs/cli@2.0.0-beta.12  //安装指定版本的taro/cli
 ```
 
 ```bash

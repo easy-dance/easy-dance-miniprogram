@@ -25,7 +25,7 @@ module.exports = {
     "@typescript-eslint"
   ],
   "rules": {
-    "no-console": ["warn", { allow: ["warn", "error"] }],
+    "no-console": ["warn", { allow: ["warn", "error", "info"] }],
     "indent": ["error", 2]
     }
 };

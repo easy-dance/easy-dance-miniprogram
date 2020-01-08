@@ -28,6 +28,12 @@ class App extends Component {
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
+    },
+    plugins: {
+      calendar: { // 极点日历插件
+        version: "1.1.3",
+        provider: "wx92c68dae5a8bb046"
+      }
     }
   }
 

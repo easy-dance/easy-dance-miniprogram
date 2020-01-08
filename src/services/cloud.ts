@@ -18,7 +18,7 @@ export const init = async () => {
 export const getWXcontext = async () => {
   // @ts-ignore
   const res = await api.cloud('login')
-  console.log(res);
+  console.info(res);
   return res;
 };
 

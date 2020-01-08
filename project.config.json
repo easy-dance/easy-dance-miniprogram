@@ -5,9 +5,24 @@
 	"appid": "wx34139989263b3718",
 	"setting": {
 		"urlCheck": true,
-		"es6": false,
+		"es6": true,
 		"postcss": false,
-		"minified": false
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"nodeModules": true,
+		"autoAudits": true,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"enhance": true
 	},
 	"compileType": "miniprogram",
 	"cloudfunctionRoot": "cloud/",
