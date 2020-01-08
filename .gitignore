@@ -4,5 +4,6 @@ node_modules/
 /dist/
 .vscode/
 .DS_Store
-project.config.json
 yarn-error.log
+package-lock.json
+project.config.json
