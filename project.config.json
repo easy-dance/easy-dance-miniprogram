@@ -4,8 +4,9 @@
 	"description": "",
 	"appid": "wx34139989263b3718",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": false,
 		"minified": true,
 		"newFeature": true,
@@ -21,8 +22,7 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		},
-		"enhance": true
+		}
 	},
 	"compileType": "miniprogram",
 	"cloudfunctionRoot": "cloud/",

@@ -3,6 +3,7 @@ import Index from './pages/index'
 
 import { init } from './services/cloud';
 import './app.css'
+import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
 
 // 如果需要在 h5 环境中开启 React Devtools
 // 取消以下注释：
@@ -25,9 +26,9 @@ class App extends Component {
     ],
     window: {
       backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      // navigationBarBackgroundColor: '#fff',
+      // navigationBarTitleText: 'WeChat',
+      // navigationBarTextStyle: 'black'
     },
     plugins: {
       calendar: { // 极点日历插件

@@ -25,11 +25,7 @@ const config = {
   },
   babel: {
     sourceMap: true,
-    presets: [
-      ['env', {
-        modules: false
-      }]
-    ],
+    presets: [['env', { modules: false }]],
     plugins: [
       'transform-decorators-legacy',
       'transform-class-properties',
@@ -39,7 +35,7 @@ const config = {
         "polyfill": false,
         "regenerator": true,
         "moduleName": 'babel-runtime'
-      }],
+      }]
     ]
   },
   copy: {

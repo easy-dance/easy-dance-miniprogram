@@ -1,26 +1,24 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
-import moment from 'moment';
+import { AtMessage } from 'taro-ui';
 
-import Chart from '@/components/Chart';
-import Calendar from '@/components/Calendar/Calendar';
+import * as DanceService from '@/services/dance';
 
-import './index.css'
-import '@/constants/tarouiCSS/calendar.scss';
+// import DanceList from '@/pages/dance/DanceList';
+import NavBar from '@/components/NavBar/NavBar';
+import TabBar from '@/components/TabBar/TabBar';
+import "taro-ui/dist/style/components/message.scss";
+import './index.scss'
 
 interface State {
-  calendar: {
-    date: moment.Moment,
-    defaultDate: moment.Moment,
-    format: string,
-  }
+  current: number,
+  title: string,
+  page: number,
 }
 const initialState: Readonly<State> = {
-  calendar: {
-    date: moment(),
-    defaultDate: moment(),
-    format: 'YYYY-MM-DD'
-  }
+  current: 0,
+  title: '约舞',
+  page: 0,
 }
 export default class Index extends Component<{}, State> {
 
@@ -32,7 +30,7 @@ export default class Index extends Component<{}, State> {
    * 提示和声明 navigationBarTextStyle: 'black' | 'white' 类型冲突, 需要显示声明类型
    */
   config: Config = {
-    navigationBarTitleText: '首页',
+    // navigationBarTitleText: '首页',
   }
 
   state = {
@@ -41,7 +39,11 @@ export default class Index extends Component<{}, State> {
 
   componentWillMount() { }
 
-  componentDidMount() { }
+  componentDidMount = async() => {
+    const { page } = this.state;
+    const data = await DanceService.getDanceList(page);
+    console.log(data);
+  }
 
   componentWillUnmount() { }
 
@@ -49,11 +51,23 @@ export default class Index extends Component<{}, State> {
 
   componentDidHide() { }
 
+  onTabClick = (current: number) => {
+    const title = current === 0 ? '约舞' : '我的'
+    this.setState({ current, title })
+  };
+
   render() {
+    const { current, title } = this.state;
     return (
       <View className='index' >
-        <Calendar />
-        <Chart/>
+        <NavBar title={title}/>
+        {/* <DanceList/> */}
+        <View className='bottomTabBar'>
+          <TabBar 
+            onTabClick={(current) => this.onTabClick(current)} 
+            current={current} />
+        </View>
+        <AtMessage />
       </View>
     )
   }

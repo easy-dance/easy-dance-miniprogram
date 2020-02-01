@@ -4,7 +4,7 @@ import { baseUrl } from '../config'
 import { logError } from '../utils/error'
 
 export default {
-  baseOptions(params, method = 'GET') {
+  async baseOptions(params, method = 'GET') {
     let { url, data } = params
     let contentType = 'application/json'
     contentType = params.contentType || contentType
@@ -36,8 +36,8 @@ export default {
           if (cookie.name && cookie.value) {
             cookies += index === res.cookies.length - 1 ? `${cookie.name}=${cookie.value};expires=${cookie.expires};path=${cookie.path}` : `${cookie.name}=${cookie.value};`
           } else {
-            cookies += `${cookie};`     
-          } 
+            cookies += `${cookie};`
+          }
         });
         Taro.setStorageSync('cookies', cookies)
       }
@@ -56,7 +56,6 @@ export default {
       // mode: 'cors',
       xhrFields: { withCredentials: true },
       success(res) {
-        // console.log('res', res)
         setCookie(res)
         if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
           return logError('api', '请求资源不存在')
@@ -78,8 +77,38 @@ export default {
         logError('api', '请求接口出现问题', e)
       }
     }
-    // eslint-disable-next-line
-    return Taro.request(option)
+    const res: any = await Taro.request(option);
+    if (res.statusCode === HTTP_STATUS.NOT_FOUND) {
+      Taro.atMessage({
+        'message': '请求资源不存在',
+        'type': 'error',
+      })
+      return Promise.reject(new Error('请求资源不存在'));      
+    } else if (res.statusCode === HTTP_STATUS.BAD_GATEWAY) {
+      Taro.atMessage({
+        'message': '服务器异常',
+        'type': 'error',
+      })
+      return Promise.reject(new Error('服务器异常'));      
+    } else if (res.statusCode === HTTP_STATUS.FORBIDDEN) {
+      Taro.atMessage({
+        'message': '没有权限访问',
+        'type': 'error',
+      })
+      return Promise.reject(new Error('没有权限访问'));
+    } else if (res.statusCode === HTTP_STATUS.AUTHENTICATE) {
+      Taro.clearStorage()
+      Taro.navigateTo({
+        url: '/pages/login/index'
+      })
+      Taro.atMessage({
+        'message': '请先登录',
+        'type': 'error',
+      })
+      return Promise.reject(new Error('请先登录'));
+    } else if (res.statusCode === HTTP_STATUS.SUCCESS) {
+      return Promise.resolve(res.data);
+    }
   },
   get(url, data?: object) {
     let option = { url, data }

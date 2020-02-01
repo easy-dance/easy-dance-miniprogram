@@ -25,6 +25,7 @@ module.exports = {
     "@typescript-eslint"
   ],
   "rules": {
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     "no-console": ["warn", { allow: ["warn", "error", "info"] }],
     "indent": ["error", 2]
     }

@@ -48,10 +48,13 @@
     "moment": "^2.24.0",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
+    "regenerator-runtime": "0.11.1",
+    "taro-listview": "^1.1.14",
     "taro-ui": "^2.2.4"
   },
   "devDependencies": {
     "@tarojs/mini-runner": "2.0.0-beta.12",
+    "@tarojs/plugin-babel": "^2.0.2",
     "@tarojs/webpack-runner": "2.0.0-beta.12",
     "@types/react": "^16.4.6",
     "@types/webpack-env": "^1.13.6",
