@@ -45,7 +45,7 @@
     "babel-runtime": "^6.26.0",
     "commitizen": "^4.0.3",
     "echarts12": "^1.1.6",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "nerv-devtools": "^1.5.5",
     "nervjs": "^1.5.5",
     "regenerator-runtime": "0.11.1",
